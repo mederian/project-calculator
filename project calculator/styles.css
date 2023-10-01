@@ -5,3 +5,22 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 700px;;
+}
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.numeric, .special, .operator{
+    flex: auto;
+    flex-basis: 33%;
+    
+    background-color: aqua;
+}
