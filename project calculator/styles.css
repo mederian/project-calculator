@@ -8,19 +8,39 @@ body {
 
 .calculator{
     display: flex;
-    flex-direction: column;
-    width: 500px;
-    height: 700px;;
+    flex-direction:column;
 }
 
 .buttons{
     display: flex;
+    flex-direction: row;
+}
+.specialbar{
+    display: flex;
+    
+}
+.operator{
+    display: flex;
+    flex-direction: column;
+}
+.numbers{
+    display: flex;
+    width: 210px;
     flex-wrap: wrap;
 }
 
 .numeric, .special, .operator{
     flex: auto;
-    flex-basis: 33%;
-    
-    background-color: aqua;
+    width: 70px;
+    height: 70px;
+}
+
+.numeric{
+    background-color: rgb(180, 180, 89);
+}
+.special{
+    background-color: rgb(115, 180, 89);
+}
+.operator{
+    background-color: rgb(180, 119, 89);
 }
