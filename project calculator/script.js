@@ -1,6 +1,7 @@
 const displayView = document.querySelector('.display');
 const numericButtons = document.querySelectorAll(".numeric");
 const operatorButtons = document.querySelectorAll(".operator")
+const specialButtons = document.querySelectorAll(".special");
 const displayData = {
     firstNum: 0,
     hasNum: false, //if firstNum is a result of previous operation
@@ -16,13 +17,18 @@ operatorButtons.forEach(button =>{
 numericButtons.forEach(element => {
     element.addEventListener('click', buttonListener);
 });
+specialButtons.forEach(element => {
+    element.addEventListener('click', buttonListener);
+});
 
 function buttonListener(e){
     if(e.target.classList.contains("operator")){
         if(displayData.hasNum){
             if(e.target.dataset.value == "="){
-                //check if we have two values and an operator
-                //then do the calculation..
+                if(displayData.operator != "none"){
+                    displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
+                    displayData.secondNum = 0;    
+                }
             }
             else{
                 console.log("operator");
@@ -43,7 +49,18 @@ function buttonListener(e){
         }
     }
     else if(e.target.classList.contains("special")){
-        
+        if(e.target.dataset.value == "ac"){
+            displayData.firstNum = 0;
+            displayData.secondNum = 0;
+            displayData.operator = "none";
+            displayData.hasNum = false;
+        }
+        else if(e.target.dataset.value == "%"){
+
+        }
+        else if(e.target.dataset.value == "plusminus"){
+
+        }
     }
 
 
@@ -55,22 +72,19 @@ function buttonListener(e){
 }
 
 function add(a,b){
-    return a+b;
+    return Number(a)+Number(b);
 }
 function sub(a,b){
-    return a-b;
+    return Number(a)-Number(b);
 }
 
 function multiply(a,b){
-    return a*b;
+    return Number(a)*Number(b);
 }
 
 function divide(a,b){
-    return a/b;
+    return Number(a)/Number(b);
 }
-
-
-
 
 function addnumber(number){
     if(displayData.operator == 'undefined'){
@@ -106,8 +120,8 @@ function addNumberToDisplay(num){
 
 
 function operation(a, b, op){
-    if(op == "add") return add(a,b);
-    if(op == "sub") return sub(a,b);
-    if(op == "multiply") return multiply(a,b);
-    if(op == "divide") return divide(a,b);
+    if(op == "+") return add(a,b);
+    if(op == "-") return sub(a,b);
+    if(op == "*") return multiply(a,b);
+    if(op == "/") return divide(a,b);
 }
