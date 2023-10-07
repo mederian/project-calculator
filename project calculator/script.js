@@ -63,7 +63,6 @@ function buttonListener(e){
         }
     }
 
-
     const first = displayData.firstNum;
     const op = displayData.operator;
     const second = displayData.secondNum;
@@ -85,39 +84,6 @@ function multiply(a,b){
 function divide(a,b){
     return Number(a)/Number(b);
 }
-
-function addnumber(number){
-    if(displayData.operator == 'undefined'){
-        //add digit to firstNum
-    }
-    else{
-        //add digit to secondNum
-    }
-}
-function addOperator(op){
-    if(displayData.operator != 'undefined') return;
-    else{
-        displayData.operator = op;
-    }
-}
-
-function updateDisplay(displayData){
-    displayView.innerText = (`${displayData.firstNum} ${displayData.operator} ${displayData.secondNum}`);
-}
-
-//value and operators
-let aVal = 0;  //The first number on the display
-let bVal = 0;  //The second number in the display
-                // result becomes the first number
-                // if typing a number after gotten an result, erase result with typed number
-                //
-let operator = "add";
-
-function addNumberToDisplay(num){
-
-}
-
-
 
 function operation(a, b, op){
     if(op == "+") return add(a,b);
