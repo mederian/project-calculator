@@ -8,7 +8,12 @@ body {
 
 .calculator{
     display: flex;
+    width: 280px;
     flex-direction:column;
+}
+
+#display{   
+    background-color: aquamarine;
 }
 
 .buttons{

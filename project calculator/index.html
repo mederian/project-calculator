@@ -9,10 +9,10 @@
 </head>
 <body>
     <h1>Hello, World!</h1>
-    <script src="script.js"></script>
+
 
     <div class="calculator">
-        <textarea name="display" id="display" cols="30" rows="10"></textarea>
+        <p class="display">0</p>
         <div class="buttons">
             <div class="left">
                 <div class="specialbar">
@@ -21,30 +21,32 @@
                     <button id="plusminus" class="special">+/-</button>
                 </div>
                 <div class="numbers">
-                    <button id="seven" class="numeric">7</button>
-                    <button id="eight" class="numeric">8</button>
-                    <button id="nine" class="numeric">9</button>
-                    <button id="four" class="numeric">4</button>
-                    <button id="five" class="numeric">5</button>
-                    <button id="six" class="numeric">6</button>
-                    <button id="one" class="numeric">1</button>
-                    <button id="two" class="numeric">2</button>
-                    <button id="three" class="numeric">3</button>
-                    <button id="zero"  class="numeric">0</button>
-                    <button id="decimal"  class="numeric">.</button>
+                    <button data-value="7" id="seven" class="numeric">7</button>
+                    <button data-value="8" id="eight" class="numeric">8</button>
+                    <button data-value="9" id="nine" class="numeric">9</button>
+                    <button data-value="4" id="four" class="numeric">4</button>
+                    <button data-value="5" id="five" class="numeric">5</button>
+                    <button data-value="6" id="six" class="numeric">6</button>
+                    <button data-value="1" id="one" class="numeric">1</button>
+                    <button data-value="2" id="two" class="numeric">2</button>
+                    <button data-value="3" id="three" class="numeric">3</button>
+                    <button data-value="0" id="zero"  class="numeric">0</button>
+                    <button data-value="." id="decimal"  class="numeric">.</button>
                 </div>
             </div>
             <div class="operators">
-                <button id="divide" class="operator">/</button>
-                <button id="multiply" class="operator">*</button>
-                <button id="sub" class="operator">-</button>   
-                <button id="add" class="operator">+</button>
-                <button id="equals" class="operator">=</button>
+                <button data-value="/" id="divide" class="operator">/</button>
+                <button data-value="*" id="multiply" class="operator">*</button>
+                <button data-value="-" id="sub" class="operator">-</button>   
+                <button data-value="+" id="add" class="operator">+</button>
+                <button data-value="=" id="equals" class="operator">=</button>
             </div>
 
         </div>
 
     </div>
     
+
+    <script src="script.js"></script>
 </body>
 </html>
