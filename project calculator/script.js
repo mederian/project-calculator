@@ -23,51 +23,62 @@ specialButtons.forEach(element => {
 
 function buttonListener(e){
     if(e.target.classList.contains("operator")){
-        if(displayData.hasNum){
-            if(e.target.dataset.value == "="){
-                if(displayData.operator != "none"){
-                    displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
-                    displayData.secondNum = 0;    
-                }
-            }
-            else{
-                console.log("operator");
-                displayData.operator = e.target.dataset.value;    
-            }
-        }
-        
+        operatorInput(e);
     }
     else if(e.target.classList.contains("numeric")){
-        if(!displayData.hasNum || displayData.operator == "none"){
-            if(displayData.firstNum == 0) displayData.firstNum = e.target.dataset.value; 
-            else displayData.firstNum += e.target.dataset.value;  
-            displayData.hasNum = true;  
-        }
-        else{
-            if(displayData.secondNum == 0) displayData.secondNum = e.target.dataset.value; 
-            else displayData.secondNum += e.target.dataset.value;         
-        }
+        numericInput(e);
     }
     else if(e.target.classList.contains("special")){
-        if(e.target.dataset.value == "ac"){
-            displayData.firstNum = 0;
-            displayData.secondNum = 0;
-            displayData.operator = "none";
-            displayData.hasNum = false;
-        }
-        else if(e.target.dataset.value == "%"){
-
-        }
-        else if(e.target.dataset.value == "plusminus"){
-
-        }
+        specialInput(e);
     }
 
+    //TODO: Change so that only one number shows
     const first = displayData.firstNum;
     const op = displayData.operator;
     const second = displayData.secondNum;
 
     displayView.innerText =  `${first} ${op} ${second}`;    
+}
+
+function numericInput(e){
+    if(!displayData.hasNum || displayData.operator == "none"){
+        if(displayData.firstNum == 0) displayData.firstNum = e.target.dataset.value; 
+        else displayData.firstNum += e.target.dataset.value;  
+        displayData.hasNum = true;  
+    }
+    else{
+        if(displayData.secondNum == 0) displayData.secondNum = e.target.dataset.value; 
+        else displayData.secondNum += e.target.dataset.value;         
+    }
+}
+
+function operatorInput(e){
+    if(displayData.hasNum){
+        if(e.target.dataset.value == "="){
+            if(displayData.operator != "none"){
+                displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
+                displayData.secondNum = 0;    
+            }
+        }
+        else{
+            console.log("operator");
+            displayData.operator = e.target.dataset.value;    
+        }
+    }
+}
+function specialInput(e){
+    if(e.target.dataset.value == "ac"){
+        displayData.firstNum = 0;
+        displayData.secondNum = 0;
+        displayData.operator = "none";
+        displayData.hasNum = false;
+    }
+    else if(e.target.dataset.value == "%"){
+
+    }
+    else if(e.target.dataset.value == "plusminus"){
+
+    }
 }
 
 function add(a,b){
