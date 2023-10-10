@@ -6,7 +6,7 @@ const displayData = {
     firstNum: 0,
     hasNum: false, //if firstNum is a result of previous operation
     operator: "none",
-    secondNum: 0,
+    secondNum: NaN,
 }
 
 
@@ -21,7 +21,16 @@ specialButtons.forEach(element => {
     element.addEventListener('click', buttonListener);
 });
 
+window.addEventListener('keydown', (e) => {
+    //if e is a number 0 - 9, create div with class numeric
+    
+    const button = document.querySelector(`[data-id="${e.value}"]`);
+    
+    //buttonListener();
+});
+
 function buttonListener(e){
+
     if(e.target.classList.contains("operator")){
         operatorInput(e);
     }
@@ -37,39 +46,59 @@ function buttonListener(e){
     const op = displayData.operator;
     const second = displayData.secondNum;
 
-    displayView.innerText =  `${first} ${op} ${second}`;    
+    const display = isNaN(second) ? first: second;
+
+    displayView.innerText =  display;    
 }
 
 function numericInput(e){
+
+    //TODO: Make it impossible to have more than one decimal sign in a number
+
     if(!displayData.hasNum || displayData.operator == "none"){
         if(displayData.firstNum == 0) displayData.firstNum = e.target.dataset.value; 
         else displayData.firstNum += e.target.dataset.value;  
         displayData.hasNum = true;  
     }
     else{
-        if(displayData.secondNum == 0) displayData.secondNum = e.target.dataset.value; 
+        if(isNaN(displayData.secondNum)) displayData.secondNum = e.target.dataset.value; 
         else displayData.secondNum += e.target.dataset.value;         
     }
 }
 
 function operatorInput(e){
     if(displayData.hasNum){
+        console.log("hasnum");
         if(e.target.dataset.value == "="){
             if(displayData.operator != "none"){
                 displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
-                displayData.secondNum = 0;    
+                displayData.secondNum = NaN;
+                displayData.operator = "none";
             }
         }
         else{
-            console.log("operator");
-            displayData.operator = e.target.dataset.value;    
+            console.log("else" + displayData.secondNum);
+            //If second number is already set, then do = and add selected operator as the next operator..
+
+            if(isNaN(displayData.secondNum)){
+                displayData.operator = e.target.dataset.value;
+            }            
+            else{
+                if(displayData.operator != "none"){
+                    displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
+                    displayData.secondNum = NaN;
+                    displayData.operator = e.target.dataset.value;
+                } 
+            }
+                
         }
+        hasNum = true; //
     }
 }
 function specialInput(e){
     if(e.target.dataset.value == "ac"){
         displayData.firstNum = 0;
-        displayData.secondNum = 0;
+        displayData.secondNum = NaN;
         displayData.operator = "none";
         displayData.hasNum = false;
     }
@@ -77,8 +106,28 @@ function specialInput(e){
 
     }
     else if(e.target.dataset.value == "plusminus"){
-
+        if(displayData.operator == "none"){
+            //change pos/neg on first
+            displayData.firstNum = toggePosNegNumber(displayData.firstNum);
+        }
+        else if(displayData.operator != "none"){
+            //change pos/neg of second
+            displayData.secondNum = toggePosNegNumber(displayData.secondNum);
+        }
     }
+}
+
+function toggePosNegNumber(num){
+    const val = Number(num);
+    
+    if(val > 0){
+        return -Math.abs(val);
+    }
+    else if(val < 0){
+        return Math.abs(val);
+    }
+    else return 0;
+
 }
 
 function add(a,b){

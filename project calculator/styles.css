@@ -1,19 +1,29 @@
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
-	margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 .calculator{
     display: flex;
     width: 280px;
     flex-direction:column;
+    border: solid;
+    padding: 5px;
+    border-radius: 1%;
+    background-color: #1C0F13;
 }
 
-#display{   
-    background-color: aquamarine;
+.display{   
+    background-color: #87F1FF;
+    border: solid;
+    text-align: right;
+    padding: 5px;
+    font-size: 2em;
+    border-radius: 2%;
 }
 
 .buttons{
@@ -24,7 +34,7 @@ body {
     display: flex;
     
 }
-.operator{
+.operators{
     display: flex;
     flex-direction: column;
 }
@@ -36,16 +46,21 @@ body {
 
 .numeric, .special, .operator{
     flex: auto;
-    width: 70px;
-    height: 70px;
+    width: 63px;
+    height: 63px;
+    font-size: 2em;
+    border:0;
+    margin: 3px;
+    border-radius: 10%;
 }
 
 .numeric{
-    background-color: rgb(180, 180, 89);
+    background-color: #DB5461;
 }
 .special{
-    background-color: rgb(115, 180, 89);
+    background-color: #006C67;
+    color: #FFFFFF;
 }
 .operator{
-    background-color: rgb(180, 119, 89);
+    background-color: #F3C98B;
 }
