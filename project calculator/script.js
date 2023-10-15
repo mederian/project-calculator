@@ -33,11 +33,12 @@ function keyListener(e){
         }
     }
 
-    if(e.key === "=") console.log("Equals");
-    if(e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") console.log("Operator");
+    console.log(e.key)
+    if(e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+" || e.key === "=") operatorInput(e.key);
+    if(e.key === "Enter") operatorInput("=");
     if(e.key === "Backspace") console.log("Erease");
-    if(e.key === ".") console.log("decimal");
-    if(e.key === "Escape") console.log("AC");
+    if(e.key === "Escape") specialInput(e.key);
+    if(e.key === ".") numericInput(e.key);
     
 
 
@@ -71,14 +72,22 @@ function numericInput(e){
     //TODO: Make it impossible to have more than one decimal sign in a number
     console.log(e);
     if(!displayData.hasNum || displayData.operator == "none"){
+        if(e === "." && displayData.firstNum.includes(e)) return;
         if(displayData.firstNum == 0) displayData.firstNum = e; 
         else displayData.firstNum += e;  
         displayData.hasNum = true;  
     }
     else{
+        if(e === "." && displayData.secondNum.includes(e)) return;
         if(isNaN(displayData.secondNum)) displayData.secondNum = e; 
         else displayData.secondNum += e;         
     }
+}
+
+
+function hasNoDecimal(nums){
+    //if num contains "." return true
+    //if num not contain "." return
 }
 
 function operatorInput(e){
@@ -111,7 +120,7 @@ function operatorInput(e){
     }
 }
 function specialInput(e){
-    if(e == "ac"){
+    if(e == "ac" || e == "Escape"){
         displayData.firstNum = 0;
         displayData.secondNum = NaN;
         displayData.operator = "none";
