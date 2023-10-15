@@ -1,10 +1,13 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <meta name="description" content="This is an assignment that is part of the odin project. It is the last assignment on the foundation
+    sections">
+    <aria-label>My Page</aria-label>
+    <title>Calculator Project</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/d3b66d41f1.js" crossorigin="anonymous"></script>
 </head>
@@ -15,32 +18,32 @@
         <div class="buttons">
             <div class="left">
                 <div class="specialbar">
-                    <button data-value="ac" id="ac" class="special">AC</button>
-                    <button data-value="%" id="percent" class="special">%</button>
-                    <button data-value="plusminus" id="plusminus" class="special">+/-</button>
+                    <button data-value="ac" id="ac" class="special" aria-label="clear">AC</button>
+                    <button data-value="%" id="percent" class="special" aria-label="percentage">%</button>
+                    <button data-value="plusminus" id="plusminus" class="special" aria-label="subtract">+/-</button>
                 </div>
                 <div class="numbers">
-                    <button data-value="7" id="seven" class="numeric">7</button>
-                    <button data-value="8" id="eight" class="numeric">8</button>
-                    <button data-value="9" id="nine" class="numeric">9</button>
-                    <button data-value="4" id="four" class="numeric">4</button>
-                    <button data-value="5" id="five" class="numeric">5</button>
-                    <button data-value="6" id="six" class="numeric">6</button>
-                    <button data-value="1" id="one" class="numeric">1</button>
-                    <button data-value="2" id="two" class="numeric">2</button>
-                    <button data-value="3" id="three" class="numeric">3</button>
-                    <button data-value="0" id="zero"  class="numeric">0</button>
-                    <button data-value="." id="decimal"  class="numeric">.</button>
-                    <button data-value="=" id="equals" class="operator">=</button>
+                    <button data-value="7" id="seven" class="numeric" aria-label="seven">7</button>
+                    <button data-value="8" id="eight" class="numeric" aria-label="eight">8</button>
+                    <button data-value="9" id="nine" class="numeric" aria-label="nine">9</button>
+                    <button data-value="4" id="four" class="numeric" aria-label="four">4</button>
+                    <button data-value="5" id="five" class="numeric" aria-label="five">5</button>
+                    <button data-value="6" id="six" class="numeric" aria-label="six">6</button>
+                    <button data-value="1" id="one" class="numeric" aria-label="one">1</button>
+                    <button data-value="2" id="two" class="numeric" aria-label="two">2</button>
+                    <button data-value="3" id="three" class="numeric" aria-label="three">3</button>
+                    <button data-value="0" id="zero"  class="numeric" aria-label="zero">0</button>
+                    <button data-value="." id="decimal"  class="numeric" aria-label="dot">.</button>
+                    <button data-value="=" id="equals" class="operator" aria-label="equals">=</button>
                 </div>
             </div>
             <div class="operators">
                 
-                <button data-value="Backspace" id="erase" class="special"><i class="fa-solid fa-delete-left"></i></button>
-                <button data-value="/" id="divide" class="operator">/</button>
-                <button data-value="*" id="multiply" class="operator">*</button>
-                <button data-value="-" id="sub" class="operator">-</button>   
-                <button data-value="+" id="add" class="operator">+</button>
+                <button data-value="Backspace" id="erase" class="special" aria-label="erease"><i class="fa-solid fa-delete-left"></i></button>
+                <button data-value="/" id="divide" class="operator" aria-label="divide">/</button>
+                <button data-value="*" id="multiply" class="operator" aria-label="multiply">*</button>
+                <button data-value="-" id="sub" class="operator" aria-label="subtract">-</button>   
+                <button data-value="+" id="add" class="operator" aria-label="add">+</button>
                 
             </div>
 
