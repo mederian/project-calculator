@@ -36,7 +36,7 @@ function keyListener(e){
     console.log(e.key)
     if(e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+" || e.key === "=") operatorInput(e.key);
     if(e.key === "Enter") operatorInput("=");
-    if(e.key === "Backspace") console.log("Erease");
+    if(e.key === "Backspace") specialInput(e.key);
     if(e.key === "Escape") specialInput(e.key);
     if(e.key === ".") numericInput(e.key);
     
@@ -82,12 +82,6 @@ function numericInput(e){
         if(isNaN(displayData.secondNum)) displayData.secondNum = e; 
         else displayData.secondNum += e;         
     }
-}
-
-
-function hasNoDecimal(nums){
-    //if num contains "." return true
-    //if num not contain "." return
 }
 
 function operatorInput(e){
