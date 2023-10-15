@@ -8,7 +8,7 @@ const displayData = {
     operator: "none",
     secondNum: NaN,
 }
-
+const operators = ['+', '-', '=', '*', '/'];
 
 operatorButtons.forEach(button =>{
     button.addEventListener('click', buttonListener);
@@ -22,54 +22,69 @@ specialButtons.forEach(element => {
 });
 
 window.addEventListener('keydown', (e) => {
-    //if e is a number 0 - 9, create div with class numeric
-    
-    const button = document.querySelector(`[data-id="${e.value}"]`);
-    
-    //buttonListener();
+    keyListener(e);
 });
 
-function buttonListener(e){
+function keyListener(e){
+    const stored = e.key;
+    if(!isNaN(e.key)){
+        if(e.key > -1 && e.key < 10){
+            numericInput(e.key);
+        }
+    }
 
+    if(e.key === "=") console.log("Equals");
+    if(e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+") console.log("Operator");
+    if(e.key === "Backspace") console.log("Erease");
+    if(e.key === ".") console.log("decimal");
+    if(e.key === "Escape") console.log("AC");
+    
+
+
+    //if special
+    updateDisplay();
+}
+
+function buttonListener(e){
+    console.log(e);
     if(e.target.classList.contains("operator")){
-        operatorInput(e);
+        operatorInput(e.target.dataset.value);
     }
     else if(e.target.classList.contains("numeric")){
-        numericInput(e);
+        numericInput(e.target.dataset.value);
     }
     else if(e.target.classList.contains("special")){
-        specialInput(e);
+        specialInput(e.target.dataset.value);
     }
+    updateDisplay();    
+}
 
-    //TODO: Change so that only one number shows
+function updateDisplay() {
     const first = displayData.firstNum;
-    const op = displayData.operator;
     const second = displayData.secondNum;
-
-    const display = isNaN(second) ? first: second;
-
-    displayView.innerText =  display;    
+    const display = isNaN(second) ? first : second;
+    displayView.innerText = display;
 }
 
 function numericInput(e){
 
     //TODO: Make it impossible to have more than one decimal sign in a number
-
+    console.log(e);
     if(!displayData.hasNum || displayData.operator == "none"){
-        if(displayData.firstNum == 0) displayData.firstNum = e.target.dataset.value; 
-        else displayData.firstNum += e.target.dataset.value;  
+        if(displayData.firstNum == 0) displayData.firstNum = e; 
+        else displayData.firstNum += e;  
         displayData.hasNum = true;  
     }
     else{
-        if(isNaN(displayData.secondNum)) displayData.secondNum = e.target.dataset.value; 
-        else displayData.secondNum += e.target.dataset.value;         
+        if(isNaN(displayData.secondNum)) displayData.secondNum = e; 
+        else displayData.secondNum += e;         
     }
 }
 
 function operatorInput(e){
     if(displayData.hasNum){
         console.log("hasnum");
-        if(e.target.dataset.value == "="){
+        if(e == "="){
             if(displayData.operator != "none"){
                 displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
                 displayData.secondNum = NaN;
@@ -81,13 +96,13 @@ function operatorInput(e){
             //If second number is already set, then do = and add selected operator as the next operator..
 
             if(isNaN(displayData.secondNum)){
-                displayData.operator = e.target.dataset.value;
+                displayData.operator = e;
             }            
             else{
                 if(displayData.operator != "none"){
                     displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
                     displayData.secondNum = NaN;
-                    displayData.operator = e.target.dataset.value;
+                    displayData.operator = e;
                 } 
             }
                 
@@ -96,16 +111,16 @@ function operatorInput(e){
     }
 }
 function specialInput(e){
-    if(e.target.dataset.value == "ac"){
+    if(e == "ac"){
         displayData.firstNum = 0;
         displayData.secondNum = NaN;
         displayData.operator = "none";
         displayData.hasNum = false;
     }
-    else if(e.target.dataset.value == "%"){
+    else if(e == "%"){
 
     }
-    else if(e.target.dataset.value == "plusminus"){
+    else if(e == "plusminus"){
         if(displayData.operator == "none"){
             //change pos/neg on first
             displayData.firstNum = toggePosNegNumber(displayData.firstNum);
