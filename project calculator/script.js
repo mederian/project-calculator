@@ -33,7 +33,6 @@ function keyListener(e){
         }
     }
 
-    console.log(e.key)
     if(e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+" || e.key === "=") operatorInput(e.key);
     if(e.key === "Enter") operatorInput("=");
     if(e.key === "Backspace") specialInput(e.key);
@@ -58,16 +57,26 @@ function buttonListener(e){
 }
 
 function updateDisplay() {
-    const first = displayData.firstNum;
-    const second = displayData.secondNum;
-    const display = isNaN(second) ? first : second;
-    displayView.innerText = display;
+    let first = displayData.firstNum;
+    let second = displayData.secondNum;
+
+    let display = isNaN(second) ? first : second;
+
+    //Need to contain the length of the number within 15 digits to fit screeen
+    
+    if(display === "You should know better") displayView.innerText = display;
+    else{
+        display = "" + display;
+        if(display.length > 15){
+    
+            display = +display;
+            display = display.toExponential(3);
+        }
+        displayView.innerText = display;
+    }
 }
 
 function numericInput(e){
-
-    //TODO: Make it impossible to have more than one decimal sign in a number
-    console.log(e);
     if(!displayData.hasNum || displayData.operator == "none"){
         if(e === "." && displayData.firstNum.includes(e)) return;
         if(displayData.firstNum == 0) displayData.firstNum = e; 
@@ -100,12 +109,12 @@ function ereaseLastDigit(){
 
 function operatorInput(e){
     if(displayData.hasNum){
-        console.log("hasnum");
         if(e == "="){
             if(displayData.operator != "none"){
                 displayData.firstNum = operation(displayData.firstNum, displayData.secondNum, displayData.operator);
                 displayData.secondNum = NaN;
                 displayData.operator = "none";
+                console.log(displayData.firstNum);
             }
         }
         else{
@@ -177,6 +186,9 @@ function multiply(a,b){
 }
 
 function divide(a,b){
+    if(b == 0){
+        return "You should know better";
+    }
     return Number(a)/Number(b);
 }
 
