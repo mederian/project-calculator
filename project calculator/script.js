@@ -39,10 +39,7 @@ function keyListener(e){
     if(e.key === "Backspace") specialInput(e.key);
     if(e.key === "Escape") specialInput(e.key);
     if(e.key === ".") numericInput(e.key);
-    
 
-
-    //if special
     updateDisplay();
 }
 
@@ -81,6 +78,23 @@ function numericInput(e){
         if(e === "." && displayData.secondNum.includes(e)) return;
         if(isNaN(displayData.secondNum)) displayData.secondNum = e; 
         else displayData.secondNum += e;         
+    }
+}
+function ereaseLastDigit(){
+    const first = "" + displayData.firstNum;
+    const second = "" + displayData.secondNum;
+    
+    if(!displayData.hasNum || displayData.operator == "none"){
+        if(first.length == 1) displayData.firstNum = 0;
+        else{
+            displayData.firstNum = first.substring(0, first.length -1);
+        }
+    }
+    else{
+        if(second.length == 1) displayData.secondNum = 0;
+        else{
+            displayData.secondNum = second.substring(0, second.length -1);
+        }
     }
 }
 
@@ -132,6 +146,9 @@ function specialInput(e){
             //change pos/neg of second
             displayData.secondNum = toggePosNegNumber(displayData.secondNum);
         }
+    }
+    else if(e == "Backspace"){
+        ereaseLastDigit();
     }
 }
 
