@@ -64,8 +64,14 @@ function updateDisplay() {
 
     //Need to contain the length of the number within 15 digits to fit screeen
     
-    if(display === "You should know better") displayView.innerText = display;
+    if(display === "You should know better"){
+        //Change font..
+        displayView.style.fontSize = "1em";
+        displayView.innerText = display;
+        
+    } 
     else{
+        displayView.style.fontSize = "2em";
         display = "" + display;
         if(display.length > 15){
     
