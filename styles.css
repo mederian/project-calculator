@@ -1,11 +1,11 @@
 body {
     -webkit-text-size-adjust: 100%;
+    text-align: -webkit-center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    text-align: -webkit-center;
     font-family: Arial, sans-serif;
 }
 
