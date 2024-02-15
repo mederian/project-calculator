@@ -1,0 +1,22 @@
+{
+    "name": "Olemsn Calculator",
+    "short_name": "Calculator",
+    "description": "Progressive Web App, created for learning purposes.",
+    "icons": [
+      {
+        "src": "/icons/maskable_icon_x48.png",
+        "sizes": "48x48",
+        "type": "image/png"
+      },
+
+      {
+        "src": "/icons/maskable_icon_x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/pwa-examples/js13kpwa/index.html",
+    "display": "fullscreen",
+    "theme_color": "#B12A34",
+    "background_color": "#B12A34"
+  }
